@@ -37,6 +37,7 @@
                                 <th style="text-align: center">Produk</th>
                                 <th style="text-align: center">Jumlah</th>
                                 <th style="text-align: center">Bahan Baku</th>
+                                <th style="text-align: center">Total Harga</th>
                                 <th style="text-align: center">Status</th>
                                 <th style="text-align: center">Pembuat</th>
                                 <th style="text-align: center">Tanggal</th>
@@ -59,6 +60,7 @@
                                             @endforeach
                                         </ul>
                                     </td>
+                                    <td class="tb-col-mb">Rp. {{ number_format($preorder->price*$preorder->amount,0,",",".") }}</td>
                                     <td class="tb-col-mb">{{ $preorder->status }}</td>
                                     <td class="tb-col-mb">{{ $preorder->user->name }}</td>
                                     <td align="right" class="tb-col-mb">{{ $preorder->created_at->format('d-m-Y') }}</td>

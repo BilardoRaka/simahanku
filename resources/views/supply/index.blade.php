@@ -36,7 +36,7 @@
                                 <th style="text-align: center">Pemasok</th>
                                 <th style="text-align: center">Bahan Baku</th>
                                 <th style="text-align: center">Jumlah</th>
-                                <th style="text-align: center">Harga</th>
+                                <th style="text-align: center">Total Harga</th>
                                 <th style="text-align: center">Pembuat</th>
                                 <th style="text-align: center">Tanggal</th>
                             </tr>
@@ -47,8 +47,8 @@
                                     <td align="center" class="nk-tb-col tb-col-mb">{{ $supplies->firstItem()+$loop->index }}</td>
                                     <td class="nk-tb-col tb-col-mb">{{ $supply->supplier->name }}</td>
                                     <td class="nk-tb-col tb-col-mb">{{ $supply->material->name }}</td>
-                                    <td align="right" class="nk-tb-col tb-col-mb">{{ $supply->amount }} {{ $supply->material->unit }}</td>
-                                    <td align="right" class="nk-tb-col tb-col-mb">Rp. {{ number_format($supply->price,2,",",".") }}</td>
+                                    <td align="right" class="nk-tb-col tb-col-mb">{{ number_format($supply->amount,0,",",".") }} {{ $supply->material->unit }}</td>
+                                    <td align="right" class="nk-tb-col tb-col-mb">Rp. {{ number_format($supply->price*$supply->amount,2,",",".") }}</td>
                                     <td align="right" class="nk-tb-col tb-col-mb">{{ $supply->user->name }}</td>
                                     <td align="right" class="nk-tb-col tb-col-mb">{{ $supply->created_at->format('d-m-Y') }}</td>
                                 </tr>

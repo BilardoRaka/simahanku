@@ -95,11 +95,19 @@ class ProductController extends Controller
 
         $material = $request->material;
         $amount = $request->amount;
-        $product = Product::where('name', $data['name'])->first();
+        $product = Product::where('id', $id)->first();
         
-        $product->material()->sync($material,[
-            'amount' => $amount
-        ]);
+        // $product->material()->syncWithPivotValues($material,[
+        //     'amount' => $amount
+        // ]);
+
+        $extra = array_map(function($qty){
+            return ['amount' => $qty];
+        }, $amount);
+
+        $pivot = array_combine($material, $extra);
+
+        $product->material()->sync($pivot);
 
         return redirect('/product')->with('peringatan', 'Berhasil mengubah data produk.');
     }
