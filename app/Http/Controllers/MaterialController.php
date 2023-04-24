@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MaterialRequest;
 use App\Models\Material;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class MaterialController extends Controller
 {
@@ -87,5 +89,19 @@ class MaterialController extends Controller
         Material::destroy($id);
 
         return redirect('/material')->with('peringatan', 'Berhasil menghapus data bahan baku.');
+    }
+
+    public function pdf()
+    {
+        $material = Material::all();
+        $date = Carbon::now()->format('d-m-Y');
+
+        $pdf = Pdf::loadView('material.pdf', [
+            'materials' => $material,
+            'date' => $date
+        ])->setPaper('a5');;
+
+        return $pdf->stream('BahanBaku - '. $date .'.pdf',array('Attachment'=>0));
+
     }
 }

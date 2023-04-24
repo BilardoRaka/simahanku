@@ -29,6 +29,11 @@
                                         <em class="icon ni ni-plus-circle"></em>&nbsp;Tambah Bahan Baku
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="/material/pdf" target="_blank" class="btn btn-primary">
+                                        <em class="icon ni ni-file-pdf"></em>&nbsp;Cetak
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>

@@ -8,6 +8,7 @@ use App\Models\Material;
 use App\Models\Preorder;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PreorderController extends Controller
 {
@@ -102,5 +103,19 @@ class PreorderController extends Controller
         }
 
         return back()->with('peringatan', 'Berhasil menerima preorder dan memulai produksi.');
+    }
+
+    public function pdf(string $id)
+    {
+        $preorder = Preorder::find($id);
+
+        $image = base64_encode(file_get_contents(public_path('images/nifandatama.png')));
+
+        $pdf = Pdf::loadView('preorder.pdf', [
+            'preorder' => $preorder,
+            'image' => $image
+        ])->setPaper('a5','landscape');;
+
+        return $pdf->stream('Preorder-id-'. $id .'.pdf',array('Attachment'=>0));
     }
 }

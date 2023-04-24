@@ -74,6 +74,8 @@
                                                     <em class="icon ni ni-cross"></em>
                                                 </button>
                                             </form>
+                                        @else
+                                            <a href="/preorder/{{ $preorder->id }}/pdf" target="_blank" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Cetak Invoice"><em class="icon ni ni-file-pdf"></em></a>
                                         @endif
                                     </td>
                                 </tr>

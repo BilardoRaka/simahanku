@@ -39,3 +39,6 @@ Route::resource('/supply', SupplyController::class)->except('show','edit','updat
 Route::resource('/product', ProductController::class)->except('show')->middleware('auth');
 Route::resource('/preorder', PreorderController::class)->except('show','edit','update')->middleware('auth');
 
+// PDF Route
+Route::get('/material/pdf', [MaterialController::class, 'pdf'])->middleware('auth');
+Route::get('/preorder/{id}/pdf', [PreorderController::class, 'pdf'])->middleware('auth');

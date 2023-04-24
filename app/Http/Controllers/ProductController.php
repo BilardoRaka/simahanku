@@ -96,10 +96,6 @@ class ProductController extends Controller
         $material = $request->material;
         $amount = $request->amount;
         $product = Product::where('id', $id)->first();
-        
-        // $product->material()->syncWithPivotValues($material,[
-        //     'amount' => $amount
-        // ]);
 
         $extra = array_map(function($qty){
             return ['amount' => $qty];
