@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', 'Data Produk')
+@section('title', 'Data Jenis Produk')
 
 @section('content')
 <div class="nk-content ">
@@ -10,23 +10,23 @@
                 <div class="nk-block-head nk-block-head-sm">
                     <div class="nk-block-between">
                         <div class="nk-block-head-content">
-                            <h3 class="nk-block-title page-title">List Data Produk</h3>
+                            <h3 class="nk-block-title page-title">List Data Jenis Produk</h3>
                         </div>
                         <div class="nk-block-head-content">
                             <ul class="nk-block-tools g-3">
                                 <li>
                                     <div class="form-control-wrap">
-                                        <form action="/product">
+                                        <form action="/product_type">
                                             <div class="form-icon form-icon-right">
                                                 <button type="submit" class="badge border-0 bg-white"><em class="icon ni ni-search"></em></button>
                                             </div>
-                                            <input type="text" class="form-control" id="search" name="search" value="{{ request('search') }}" placeholder="Nama/Deskripsi Produk">
+                                            <input type="text" class="form-control" id="search" name="search" value="{{ request('search') }}" placeholder="Jenis Produk">
                                         </form>
                                     </div>
                                 </li>
                                 <li>
-                                    <a href="/product/create" class="btn btn-primary">
-                                        <em class="icon ni ni-plus-circle"></em>&nbsp;Tambah Produk
+                                    <a href="/product_type/create" class="btn btn-primary">
+                                        <em class="icon ni ni-plus-circle"></em>&nbsp;Tambah Jenis Produk
                                     </a>
                                 </li>
                             </ul>
@@ -44,22 +44,18 @@
                             <tr>
                                 <th style="text-align: center">No.</th>
                                 <th style="text-align: center">Jenis Produk</th>
-                                <th style="text-align: center">Ukuran</th>
-                                <th style="text-align: center">Deskripsi</th>
-                                <th style="text-align: center">Bahan Baku Dibutuhkan Per Produk</th>
+                                <th style="text-align: center">Bahan Baku Dibutuhkan (tiap cm<sup>2</sup>)</th>
                                 <th style="text-align: center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($products as $product)
+                            @foreach ($product_types as $product_type)
                                 <tr>
-                                    <td align="center" class="nk-tb-col tb-col-mb">{{ $products->firstItem()+$loop->index }}</td>
-                                    <td class="nk-tb-col tb-col-mb">{{ $product->productType->product_type }}</td>
-                                    <td class="nk-tb-col tb-col-mb">{{ $product->space }}</td>
-                                    <td class="nk-tb-col tb-col-mb">{{ $product->description }}</td>
+                                    <td align="center" class="nk-tb-col tb-col-mb">{{ $product_types->firstItem()+$loop->index }}</td>
+                                    <td class="nk-tb-col tb-col-mb">{{ $product_type->product_type }}</td>
                                     <td class="nk-tb-col tb-col-mb">
                                         <ul>
-                                            @foreach($product->material as $material)
+                                            @foreach($product_type->material as $material)
                                                 <li>
                                                     {{ $material->pivot->amount }} {{ $material->unit }} {{ $material->name }}
                                                 </li>
@@ -67,11 +63,11 @@
                                         </ul>
                                     </td>
                                     <td align="center" class="nk-tb-col tb-col-mb">
-                                    <a href="/product/{{ $product->id }}/edit" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Produk"><em class="icon ni ni-edit"></em></a>
-                                    <form action="/product/{{ $product->id }}" method="post" class="d-inline">
+                                    <a href="/product_type/{{ $product_type->id }}/edit" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Jenis Produk"><em class="icon ni ni-edit"></em></a>
+                                    <form action="/product_type/{{ $product_type->id }}" method="post" class="d-inline">
                                     @method('delete')
                                     @csrf
-                                        <button class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus Produk" onclick="return confirm('Anda yakin untuk hapus?')">
+                                        <button class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus Jenis Produk" onclick="return confirm('Anda yakin untuk hapus?')">
                                             <em class="icon ni ni-trash"></em>
                                         </button>
                                     </form>
@@ -83,7 +79,7 @@
                         </tbody>
                     </table>
                 </div>
-                {{ $products->links() }}
+                {{ $product_types->links() }}
             </div>
         </div>
     </div>

@@ -20,13 +20,44 @@
                     @method('POST')
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control form-control-lg form-control-outlined @error('name') is-invalid @enderror" id="name" name="name">
-                                <label class="form-label-outlined" for="name">Nama</label>
-                                @error('name')
+                                <select name="product_type_id" class="form-select js-select2 @error('product_type_id') is-invalid @enderror" data-ui="lg" data-search="on">
+                                    <option value=" " disabled selected>Pilih Jenis Produk</option>
+                                    @foreach($product_types as $product_type)
+                                    <option value="{{ $product_type->id }}">{{ $product_type->product_type }}</option>
+                                    @endforeach
+                                </select>
+                                @error('product_type_id')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
+                                <label class="form-label-outlined" for="product_type_id">Jenis Produk</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">                    
+                                    <div class="form-control-wrap">
+                                        <input type="text" class="form-control form-control-lg form-control-outlined @error('long') is-invalid @enderror" id="long" name="long">
+                                        <label class="form-label-outlined" for="long">Panjang (cm<sup>2</sup>)</label>
+                                        @error('long')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col">                            
+                                    <div class="form-control-wrap">
+                                        <input type="text" class="form-control form-control-lg form-control-outlined @error('wide') is-invalid @enderror" id="wide" name="wide">
+                                        <label class="form-label-outlined" for="wide">Lebar (cm<sup>2</sup>)</label>
+                                        @error('wide')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -40,33 +71,6 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="form-group col-12 child-repeater-table">
-                                <table class="table table-bordered table-responsive">
-                                    <thead>
-                                        <tr>
-                                            <th style="text-align:center; margin: auto;">Bahan Baku</th>
-                                            <th style="text-align:center; margin: auto;">Jumlah Dibutuhkan</th>
-                                            <th style="text-align:center; margin: auto;"><a href="javascript:void(0)" class="badge bg-success addRow">+</a></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <select name="material[]" class="form-select js-select2" data-ui="lg" data-search="on">
-                                                    <option value=" " disabled selected>Pilih Bahan Baku</option>
-                                                    @foreach($materials as $material)
-                                                    <option value="{{ $material->id }}">{{ $material->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
-                                            <td><input type="text" name="amount[]" class="form-control form-control-lg" required></td>
-                                            <td align="center"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
                         <div class="mt-3">
                             <button type="submit" class="btn btn-primary">Buat</button>
                             <a href="/product" class="btn btn-danger">Kembali</a>
@@ -77,27 +81,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-@section('script')
-<script>
-    $('thead').on('click', '.addRow', function(){
-        var tr = "<tr>"+
-                    "<td>"+
-                        "<select name='material[]' class='form-select js-select2' data-ui='lg' data-search='on'>"+
-                            "<option value=' ' disabled selected>Pilih Bahan Baku</option>"+
-                            "@foreach($materials as $material)"+
-                            "<option value='{{ $material->id }}'>{{ $material->name }}</option>"+
-                            "@endforeach"+
-                        "</select>"+
-                    "</td>"+
-                    "<td><input type='text' name='amount[]' class='form-control form-control-lg' required></td>"+
-                    "<td align='center'><a href='javascript:void(0)' class='badge bg-danger deleteRow'>-</a></td>"+
-                "</tr>"
-        $('tbody').append(tr);
-    });
-    $('tbody').on('click', '.deleteRow', function(){
-        $(this).parent().parent().remove();
-    });
-</script>
 @endsection

@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\PreorderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SupplyController;
 use App\Http\Controllers\UserController;
@@ -37,6 +38,7 @@ Route::resource('/supplier', SupplierController::class)->except('show')->middlew
 Route::resource('/material', MaterialController::class)->except('show')->middleware('auth');
 Route::resource('/supply', SupplyController::class)->except('show','edit','update','destroy')->middleware('auth');
 Route::resource('/product', ProductController::class)->except('show')->middleware('auth');
+Route::resource('/product_type', ProductTypeController::class)->except('show')->middleware('auth');
 Route::resource('/preorder', PreorderController::class)->except('show','edit','update')->middleware('auth');
 
 // PDF Route

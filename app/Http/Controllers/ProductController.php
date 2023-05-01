@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use App\Models\Material;
 use App\Models\Product;
+use App\Models\ProductType;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -33,9 +34,11 @@ class ProductController extends Controller
     public function create()
     {
         $material = Material::all();
+        $product_type = ProductType::all();
         
         return view('product.create',[
-            'materials' => $material
+            'materials' => $material,
+            'product_types' => $product_type
         ]);        
     }
 
@@ -45,16 +48,18 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $data = $request->validated();
-
+        $data['space'] = $data['long'] * $data['wide'];
         Product::create($data);
 
         $material = $request->material;
-        $amount = $request->amount;
-        $product = Product::where('name', $data['name'])->first();
-        
-        for( $i=0; $i < count($amount); $i++ ) {
-            $product->material()->attach($material[$i], [
-                'amount' => $amount[$i]
+
+        $product = Product::where('product_type_id', $data['product_type_id'])->where('space', $data['space'])->first();
+ 
+        $recommendation = ProductType::where('id', $data['product_type_id'])->first();
+
+        foreach($recommendation->material as $material){
+            $product->material()->attach($material->id, [
+                'amount' => $material->pivot->amount * $data['space']
             ]);
         }
 
@@ -113,6 +118,8 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Product::destroy($id);
+
+        return back()->with('peringatan', 'Berhasil menghapus data produk.');
     }
 }

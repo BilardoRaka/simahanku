@@ -16,4 +16,9 @@ class Material extends Model
     {
         return $this->belongsToMany(Product::class)->withPivot('amount');
     }
+
+    public function productType(): BelongsToMany
+    {
+        return $this->belongsToMany(ProductType::class)->withPivot('amount');
+    }
 }

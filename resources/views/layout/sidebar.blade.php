@@ -41,6 +41,12 @@
                         </a>
                     </li>
                     <li class="nk-menu-item">
+                        <a href="/product_type" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-layers"></em></span>
+                            <span class="nk-menu-text">Jenis Produk</span>
+                        </a>
+                    </li>
+                    <li class="nk-menu-item">
                         <a href="/product" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-package"></em></span>
                             <span class="nk-menu-text">Produk</span>

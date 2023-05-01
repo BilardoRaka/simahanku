@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', 'Ubah Produk')
+@section('title', 'Ubah Jenis Produk')
 
 @section('content')
 <div class="nk-content ">
@@ -10,58 +10,26 @@
                 <div class="nk-block-head nk-block-head-sm">
                     <div class="nk-block-between">
                         <div class="nk-block-head-content">
-                            <h3 class="nk-block-title page-title">Ubah Produk</h3>
+                            <h3 class="nk-block-title page-title">Ubah Jenis Produk</h3>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <form method="post" action="/product/{{ $product->id }}">
+                    <form method="post" action="/product_type/{{ $product_type->id }}">
                     @csrf
                     @method('PUT')
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="hidden" id="product_type_id" name="product_type_id" value="{{ $product->product_type_id }}">
-                                <input type="text" class="form-control form-control-lg form-control-outlined" value="{{ $product->productType->product_type }}" readonly>
-                                <label class="form-label-outlined" for="product_type_id">Jenis Produk</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col">                    
-                                    <div class="form-control-wrap">
-                                        <input type="text" class="form-control form-control-lg form-control-outlined @error('long') is-invalid @enderror" id="long" name="long" value="{{ $product->long }}">
-                                        <label class="form-label-outlined" for="long">Panjang (cm<sup>2</sup>)</label>
-                                        @error('long')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col">                            
-                                    <div class="form-control-wrap">
-                                        <input type="text" class="form-control form-control-lg form-control-outlined @error('wide') is-invalid @enderror" id="wide" name="wide" value="{{ $product->wide }}">
-                                        <label class="form-label-outlined" for="wide">Lebar (cm<sup>2</sup>)</label>
-                                        @error('wide')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-control-wrap">
-                                <input type="text" class="form-control form-control-lg form-control-outlined @error('description') is-invalid @enderror" id="description" name="description" value="{{ $product->description }}">
-                                <label class="form-label-outlined" for="description">Deskripsi</label>
-                                @error('description')
+                                <input type="text" class="form-control form-control-lg form-control-outlined @error('product_type') is-invalid @enderror" id="product_type" name="product_type" value="{{ $product_type->product_type }}">
+                                <label class="form-label-outlined" for="product_type">Jenis Produk</label>
+                                @error('product_type')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
                         </div>
+                        <label class="form-label" for="material">Bahan Baku Dibutuhan Tiap cm<sup>2</sup></label>
                         <div class="row">
                             <div class="form-group col-12 child-repeater-table">
                                 <table class="table table-bordered table-responsive">
@@ -73,7 +41,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($product->material as $material)
+                                        @foreach($product_type->material as $material)
                                         <tr>
                                             <td>
                                                 <select name="material[]" class="form-select js-select2" data-ui="lg" data-search="on">
@@ -96,7 +64,7 @@
                         </div>
                         <div class="mt-3">
                             <button type="submit" class="btn btn-primary">Ubah</button>
-                            <a href="/product" class="btn btn-danger">Kembali</a>
+                            <a href="/product_type" class="btn btn-danger">Kembali</a>
                         </div>
                     </form>
                 </div>

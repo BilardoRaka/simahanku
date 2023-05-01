@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Product extends Model
+class ProductType extends Model
 {
     use HasFactory;
 
@@ -14,11 +14,6 @@ class Product extends Model
 
     public function material(): BelongsToMany
     {
-        return $this->belongsToMany(Material::class, 'product_material', 'product_id', 'material_id')->withPivot('amount');
-    }
-
-    public function productType()
-    {
-        return $this->belongsTo(ProductType::class);
+        return $this->belongsToMany(Material::class, 'product_type_material', 'product_type_id', 'material_id')->withPivot('amount');
     }
 }

@@ -39,7 +39,7 @@
                                 <select name="product_id" class="form-select js-select2 @error('product_id') is-invalid @enderror" data-ui="lg" data-search="on">
                                     <option value=" " disabled selected>Pilih Produk</option>
                                     @foreach($products as $product)
-                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                    <option value="{{ $product->id }}">{{ $product->productType->product_type }} Ukuran {{ $product->space }} cm2</option>
                                     @endforeach
                                 </select>
                                 @error('product_id')

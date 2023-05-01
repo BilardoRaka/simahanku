@@ -49,7 +49,7 @@
                                 <tr>
                                     <td align="center" class="tb-col-mb">{{ $preorders->firstItem()+$loop->index }}</td>
                                     <td class="tb-col-mb">{{ $preorder->customer->name }}</td>
-                                    <td class="tb-col-mb">{{ $preorder->product->name }}</td>
+                                    <td class="tb-col-mb">{{ $preorder->product->productType->product_type }} Ukuran {{ $preorder->product->space }} cm<sup>2</sup></td>
                                     <td align="right" class="tb-col-mb">{{ number_format($preorder->amount,0,',','.') }}</td>
                                     <td class="nk-tb-col tb-col-mb">
                                         <ul>
