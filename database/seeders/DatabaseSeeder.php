@@ -25,9 +25,9 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         User::create([
-            'name' => 'Bilardo Raka',
-            'email' => 'bilardo@gmail.com',
-            'password' => bcrypt('P4mungk2s.'),
+            'name' => 'Andris Prayoga',
+            'email' => 'andris@gmail.com',
+            'password' => bcrypt('123'),
             'role' => 'administrator'
         ]);
 
@@ -46,8 +46,8 @@ class DatabaseSeeder extends Seeder
             'unit' => 'Lembar'
         ]);
 
+        User::factory(20)->create();
         Customer::factory(20)->create();
-
         Supplier::factory(20)->create();
     }
 }
