@@ -29,7 +29,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <label class="form-label" for="material">Bahan Baku Dibutuhan Tiap cm<sup>2</sup></label>
+                        <label class="form-label" for="material">Bahan Baku Dibutuhan Tiap cm<sup>3</sup></label>
                         <div class="row">
                             <div class="form-group col-12 child-repeater-table">
                                 <table class="table table-bordered table-responsive">

@@ -16,6 +16,7 @@
         <div class="nk-sidebar-content">
             <div class="nk-sidebar-menu" data-simplebar>
                 <ul class="nk-menu">
+                    @if(auth()->user()->role == 'admin')
                     <li class="nk-menu-item">
                         <a href="/user" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-users-fill"></em></span>
@@ -40,13 +41,14 @@
                             <span class="nk-menu-text">Bahan Baku</span>
                         </a>
                     </li>
-                    <li class="nk-menu-item">
+                    <li class="nk-menu-item {{ (Request::is('product_type') or Request::is('product_type/*')) ? 'active current-page' : '' }}">
                         <a href="/product_type" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-layers"></em></span>
                             <span class="nk-menu-text">Jenis Produk</span>
                         </a>
                     </li>
-                    <li class="nk-menu-item">
+                    @endif
+                    <li class="nk-menu-item {{ (Request::is('product') or Request::is('product/*')) ? 'active current-page' : '' }}">
                         <a href="/product" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-package"></em></span>
                             <span class="nk-menu-text">Produk</span>

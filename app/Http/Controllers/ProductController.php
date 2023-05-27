@@ -48,14 +48,32 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $data = $request->validated();
-        $data['space'] = $data['long'] * $data['wide'];
+        $data['space'] = $data['long'] * $data['wide'] * $data['height'];
         Product::create($data);
 
         $material = $request->material;
-
         $product = Product::where('product_type_id', $data['product_type_id'])->where('space', $data['space'])->first();
- 
         $recommendation = ProductType::where('id', $data['product_type_id'])->first();
+
+        if($data['product_type_id'] == '1') {
+            $PSheet = (($data['long']+1)+($data['wide']+1)+5) * 2;
+            $LSheet = ($data['wide']+1)+($data['height']+1);
+            $stringSheet = 'Sheet ukuran '.$PSheet.'x'.$LSheet;
+            $material = Material::where('name', $stringSheet)->first();
+
+            if($material == null){
+                Material::create([
+                    'name' => $stringSheet,
+                    'unit' => 'Lembar',
+                ]);
+            }
+
+            $addSheet = Material::where('name', $stringSheet)->first();
+            $product->material()->attach($addSheet->id, [
+                'amount' => 1
+            ]);
+        }
+
 
         foreach($recommendation->material as $material){
             $product->material()->attach($material->id, [

@@ -44,7 +44,7 @@
                             <tr>
                                 <th style="text-align: center">No.</th>
                                 <th style="text-align: center">Jenis Produk</th>
-                                <th style="text-align: center">Ukuran</th>
+                                <th style="text-align: center">Volume</th>
                                 <th style="text-align: center">Deskripsi</th>
                                 <th style="text-align: center">Bahan Baku Dibutuhkan Per Produk</th>
                                 <th style="text-align: center">Aksi</th>
@@ -55,7 +55,7 @@
                                 <tr>
                                     <td align="center" class="nk-tb-col tb-col-mb">{{ $products->firstItem()+$loop->index }}</td>
                                     <td class="nk-tb-col tb-col-mb">{{ $product->productType->product_type }}</td>
-                                    <td class="nk-tb-col tb-col-mb">{{ $product->space }}</td>
+                                    <td class="nk-tb-col tb-col-mb">{{ number_format($product->space,0,',','.') }} cm<sup>3</sup></td>
                                     <td class="nk-tb-col tb-col-mb">{{ $product->description }}</td>
                                     <td class="nk-tb-col tb-col-mb">
                                         <ul>
@@ -88,4 +88,4 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection 

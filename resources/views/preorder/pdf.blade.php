@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <title>Data Bahan Baku</title>
+  <title>Data PreOrder</title>
   <style type="text/css">  
   .styled-table {
       border-collapse: collapse;
@@ -109,7 +109,7 @@
         <p class="text">
           <b>Produk Dipesan</b>
           <br>
-          Nama Produk : {{ $preorder->product->name }}
+          Jenis Produk : {{ $preorder->product->productType->product_type }} dengan ukuran {{ number_Format($preorder->product->space,0,',','.') }} cm<sup>2</sup>
           <br>
           Jumlah : {{ $preorder->amount }} Buah
           <br>

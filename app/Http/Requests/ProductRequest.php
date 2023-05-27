@@ -25,6 +25,7 @@ class ProductRequest extends FormRequest
             'product_type_id' => 'required',
             'long' => 'required|numeric',
             'wide' => 'required|numeric',
+            'height' => 'required|numeric',
             'description' => 'required',
         ];
     }

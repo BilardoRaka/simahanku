@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('product_type_id')->references('id')->on('product_types')->onDelete('cascade');
             $table->string('long');
             $table->string('wide');
+            $table->string('height');
             $table->string('space');
             $table->longText('description');
             $table->timestamps();

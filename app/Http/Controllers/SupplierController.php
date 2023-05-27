@@ -62,7 +62,7 @@ class SupplierController extends Controller
         $supplier = Supplier::where('id', $id)->first();
 
         return view('supplier.edit',[
-            'suppliers' => $supplier
+            'supplier' => $supplier
         ]);
     }
 

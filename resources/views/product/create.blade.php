@@ -39,7 +39,7 @@
                                 <div class="col">                    
                                     <div class="form-control-wrap">
                                         <input type="text" class="form-control form-control-lg form-control-outlined @error('long') is-invalid @enderror" id="long" name="long">
-                                        <label class="form-label-outlined" for="long">Panjang (cm<sup>2</sup>)</label>
+                                        <label class="form-label-outlined" for="long">Panjang (cm)</label>
                                         @error('long')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -50,8 +50,19 @@
                                 <div class="col">                            
                                     <div class="form-control-wrap">
                                         <input type="text" class="form-control form-control-lg form-control-outlined @error('wide') is-invalid @enderror" id="wide" name="wide">
-                                        <label class="form-label-outlined" for="wide">Lebar (cm<sup>2</sup>)</label>
+                                        <label class="form-label-outlined" for="wide">Lebar (cm)</label>
                                         @error('wide')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col">                            
+                                    <div class="form-control-wrap">
+                                        <input type="text" class="form-control form-control-lg form-control-outlined @error('height') is-invalid @enderror" id="height" name="height">
+                                        <label class="form-label-outlined" for="height">Tinggi (cm)</label>
+                                        @error('height')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>

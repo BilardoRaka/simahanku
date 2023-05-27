@@ -44,7 +44,7 @@
                             <tr>
                                 <th style="text-align: center">No.</th>
                                 <th style="text-align: center">Jenis Produk</th>
-                                <th style="text-align: center">Bahan Baku Dibutuhkan (tiap cm<sup>2</sup>)</th>
+                                <th style="text-align: center">Bahan Baku Dibutuhkan (cm<sup>3</sup>)</th>
                                 <th style="text-align: center">Aksi</th>
                             </tr>
                         </thead>
