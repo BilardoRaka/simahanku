@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('height');
             $table->string('space');
             $table->longText('description');
+            $table->float('price');
             $table->timestamps();
         });
     }

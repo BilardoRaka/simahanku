@@ -82,7 +82,7 @@
       <hr>
       <div>
         <p>
-          Dibuat oleh {{ auth()->user()->name }}
+          Dibuat oleh {{ auth()->user()->employee->name }}
           <br>
           Per Tanggal {{ $date }}
         </p>  

@@ -29,6 +29,8 @@ Route::get('/preorder/{id}/confirm', [PreorderController::class, 'confirm'])->mi
 // Authentification Route
 Route::get('/signin', [AuthController::class, 'signin'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
+Route::get('/registration', [AuthController::class, 'registration'])->middleware('guest');
+Route::post('/registration', [AuthController::class, 'storeRegistration'])->middleware('guest');
 Route::post('/logout', [AuthController::class, 'logout']);
 
 // Resource Route
@@ -38,9 +40,14 @@ Route::resource('/supplier', SupplierController::class)->except('show')->middlew
 Route::resource('/material', MaterialController::class)->except('show')->middleware('auth');
 Route::resource('/supply', SupplyController::class)->except('show','edit','update','destroy')->middleware('auth');
 Route::resource('/product', ProductController::class)->except('show')->middleware('auth');
-Route::resource('/product_type', ProductTypeController::class)->except('show')->middleware('auth');
+Route::resource('/type', ProductTypeController::class)->except('show')->middleware('auth');
 Route::resource('/preorder', PreorderController::class)->except('show','edit','update')->middleware('auth');
 
 // PDF Route
 Route::get('/material/pdf', [MaterialController::class, 'pdf'])->middleware('auth');
 Route::get('/preorder/{id}/pdf', [PreorderController::class, 'pdf'])->middleware('auth');
+
+// payment
+Route::get('/preorder/{id}/payment/page', [PreorderController::class, 'paymentPage'])->middleware('auth');
+Route::put('/preorder/{id}/payment/post', [PreorderController::class, 'paymentPost'])->middleware('auth');
+Route::get('/preorder/{session_id}/payment/notification', [PreorderController::class, 'paymentNotification'])->name('preorder.notification')->middleware('auth');

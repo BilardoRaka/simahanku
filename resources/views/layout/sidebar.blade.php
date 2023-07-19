@@ -7,7 +7,7 @@
                     class="icon ni ni-menu"></em></a>
         </div>
         <div class="nk-sidebar-brand">
-            <a href="html/index.html" class="logo-link nk-sidebar-logo">
+            <a href="/" class="logo-link nk-sidebar-logo">
                 <img class="logo-light logo-img" src="{{ asset('images/nifandatama.png') }}" alt="logo">
             </a>
         </div>
@@ -41,15 +41,16 @@
                             <span class="nk-menu-text">Bahan Baku</span>
                         </a>
                     </li>
-                    <li class="nk-menu-item {{ (Request::is('product_type') or Request::is('product_type/*')) ? 'active current-page' : '' }}">
-                        <a href="/product_type" class="nk-menu-link">
+                    <li class="nk-menu-item {{ (Request::is('type') or Request::is('type/*')) ? 'active current-page' : '' }}">
+                        <a href="{{ route('type.index') }}" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-layers"></em></span>
-                            <span class="nk-menu-text">Jenis Produk</span>
+                            <span class="nk-menu-text">Jenis Bahan Baku</span>
                         </a>
                     </li>
                     @endif
+                    @if(auth()->user()->role != 'customer')
                     <li class="nk-menu-item {{ (Request::is('product') or Request::is('product/*')) ? 'active current-page' : '' }}">
-                        <a href="/product" class="nk-menu-link">
+                        <a href="{{ route('product.index') }}" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-package"></em></span>
                             <span class="nk-menu-text">Produk</span>
                         </a>
@@ -60,6 +61,7 @@
                             <span class="nk-menu-text">Suplai</span>
                         </a>
                     </li>
+                    @endif
                     <li class="nk-menu-item">
                         <a href="/preorder" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-coins"></em></span>

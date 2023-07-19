@@ -36,6 +36,11 @@
                                         <em class="icon ni ni-cross-circle"></em> {{ session('peringatan') }}
                                     </div>
                                 @endif
+                                @if(session()->has('success'))
+                                    <div class="alert alert-success alert-icon">
+                                        <em class="icon ni ni-check-circle"></em> {{ session('success') }}
+                                    </div>
+                                @endif
                                 <div class="nk-block-head">
                                     <div class="nk-block-head-content">
                                         <h4 class="nk-block-title">Sign-In</h4>
@@ -77,6 +82,9 @@
                                         <button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
                                     </div>
                                 </form>
+                                <p class="text-center mt-2">
+                                    Belum punya akun ? Silahkan registrasi <a href="/registration">disini</a>
+                                </p>
                             </div>
                         </div>
                     </div>

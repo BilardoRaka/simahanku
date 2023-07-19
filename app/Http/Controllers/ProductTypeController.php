@@ -58,7 +58,7 @@ class ProductTypeController extends Controller
             ]);
         }
 
-        return redirect('/product_type')->with('peringatan', 'Berhasil menambahkan jenis produk baru.');
+        return redirect('/type')->with('peringatan', 'Berhasil menambahkan jenis produk baru.');
     }
 
     /**
@@ -104,7 +104,7 @@ class ProductTypeController extends Controller
 
         $product_type->material()->sync($pivot);
 
-        return redirect('/product_type')->with('peringatan', 'Berhasil mengubah data jenis produk.');
+        return redirect('/type')->with('peringatan', 'Berhasil mengubah data jenis produk.');
     }
 
     /**

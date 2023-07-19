@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', 'Data Jenis Produk')
+@section('title', 'Data Jenis Bahan Baku')
 
 @section('content')
 <div class="nk-content ">
@@ -10,23 +10,23 @@
                 <div class="nk-block-head nk-block-head-sm">
                     <div class="nk-block-between">
                         <div class="nk-block-head-content">
-                            <h3 class="nk-block-title page-title">List Data Jenis Produk</h3>
+                            <h3 class="nk-block-title page-title">List Data Jenis Bahan Baku</h3>
                         </div>
                         <div class="nk-block-head-content">
                             <ul class="nk-block-tools g-3">
                                 <li>
                                     <div class="form-control-wrap">
-                                        <form action="/product_type">
+                                        <form action="/type">
                                             <div class="form-icon form-icon-right">
                                                 <button type="submit" class="badge border-0 bg-white"><em class="icon ni ni-search"></em></button>
                                             </div>
-                                            <input type="text" class="form-control" id="search" name="search" value="{{ request('search') }}" placeholder="Jenis Produk">
+                                            <input type="text" class="form-control" id="search" name="search" value="{{ request('search') }}" placeholder="Jenis Bahan Baku">
                                         </form>
                                     </div>
                                 </li>
                                 <li>
-                                    <a href="/product_type/create" class="btn btn-primary">
-                                        <em class="icon ni ni-plus-circle"></em>&nbsp;Tambah Jenis Produk
+                                    <a href="/type/create" class="btn btn-primary">
+                                        <em class="icon ni ni-plus-circle"></em>&nbsp;Tambah Jenis Bahan Baku
                                     </a>
                                 </li>
                             </ul>
@@ -43,8 +43,8 @@
                         <thead>
                             <tr>
                                 <th style="text-align: center">No.</th>
-                                <th style="text-align: center">Jenis Produk</th>
-                                <th style="text-align: center">Bahan Baku Dibutuhkan (cm<sup>3</sup>)</th>
+                                <th style="text-align: center">Jenis Bahan Baku</th>
+                                <th style="text-align: center">Komposisi Bahan Baku Dibutuhkan (cm<sup>3</sup>)</th>
                                 <th style="text-align: center">Aksi</th>
                             </tr>
                         </thead>
@@ -63,11 +63,11 @@
                                         </ul>
                                     </td>
                                     <td align="center" class="nk-tb-col tb-col-mb">
-                                    <a href="/product_type/{{ $product_type->id }}/edit" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Jenis Produk"><em class="icon ni ni-edit"></em></a>
-                                    <form action="/product_type/{{ $product_type->id }}" method="post" class="d-inline">
+                                    <a href="/type/{{ $product_type->id }}/edit" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Jenis Bahan Baku"><em class="icon ni ni-edit"></em></a>
+                                    <form action="/type/{{ $product_type->id }}" method="post" class="d-inline">
                                     @method('delete')
                                     @csrf
-                                        <button class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus Jenis Produk" onclick="return confirm('Anda yakin untuk hapus?')">
+                                        <button class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus Jenis Bahan Baku" onclick="return confirm('Anda yakin untuk hapus?')">
                                             <em class="icon ni ni-trash"></em>
                                         </button>
                                     </form>

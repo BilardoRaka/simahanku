@@ -89,8 +89,6 @@
         <p class="text">
           <b>Keterangan Preorder</b>
           <br>
-          Preorder dilakukan oleh {{ $preorder->user->name }}
-          <br>
           Waktu Dibuat {{ $preorder->created_at->format('H:i d-m-Y') }}
           <br>
           Waktu Konfirmasi {{ $preorder->updated_at->format('H:i d-m-Y') }}
@@ -104,7 +102,7 @@
           <br>
           Nomor Telepon : {{ $preorder->customer->phone }}
           <br>
-          Email : {{ $preorder->customer->email }}  
+          Email : {{ $preorder->customer->user->email }}  
         </p>  
         <p class="text">
           <b>Produk Dipesan</b>

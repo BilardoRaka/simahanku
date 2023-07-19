@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerRequest;
 use App\Models\Customer;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -13,10 +14,10 @@ class CustomerController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->input('search');
+        $search = $request->search;
 
         if($search != null){
-            $customer = Customer::where('name', 'iLIKE', "%{$search}%")->orWhere('email', 'iLIKE', "%{$search}%")->paginate(10)->withQueryString(); 
+            $customer = Customer::where('company_name', 'iLIKE', "%{$search}%")->orWhere('pic', 'iLIKE', "%{$search}%")->paginate(10)->withQueryString(); 
         } else {
             $customer = Customer::paginate(10)->withQueryString();
         }
@@ -83,7 +84,7 @@ class CustomerController extends Controller
      */
     public function destroy(string $id)
     {
-        Customer::destroy($id);
+        User::destroy($id);
 
         return back()->with('peringatan', 'Berhasil menghapus data pelanggan.');
     }

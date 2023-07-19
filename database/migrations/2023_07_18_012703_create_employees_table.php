@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('employees', function (Blueprint $table) {
             $table->id();
 
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->string('company_name')->nullable();
-            $table->string('pic')->nullable();
-            $table->longText('address')->nullable();
+            $table->string('name')->nullable();
             $table->string('phone')->nullable();
+            $table->longText('address')->nullable();
+            $table->string('job_position')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('employees');
     }
 };

@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', 'Buat Jenis Produk')
+@section('title', 'Buat Jenis Bahan Baku')
 
 @section('content')
 <div class="nk-content ">
@@ -10,18 +10,18 @@
                 <div class="nk-block-head nk-block-head-sm">
                     <div class="nk-block-between">
                         <div class="nk-block-head-content">
-                            <h3 class="nk-block-title page-title">Buat Jenis Produk</h3>
+                            <h3 class="nk-block-title page-title">Buat Jenis Bahan Baku</h3>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <form method="post" action="/product_type">
+                    <form method="post" action="/type">
                     @csrf
                     @method('POST')
                         <div class="form-group">
                             <div class="form-control-wrap">
                                 <input type="text" class="form-control form-control-lg form-control-outlined @error('product_type') is-invalid @enderror" id="product_type" name="product_type">
-                                <label class="form-label-outlined" for="product_type">Jenis Produk</label>
+                                <label class="form-label-outlined" for="product_type">Jenis Bahan Baku</label>
                                 @error('product_type')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -35,7 +35,7 @@
                                 <table class="table table-bordered table-responsive">
                                     <thead>
                                         <tr>
-                                            <th style="text-align:center; margin: auto;">Bahan Baku</th>
+                                            <th style="text-align:center; margin: auto;">Komposisi Bahan Baku</th>
                                             <th style="text-align:center; margin: auto;">Jumlah Dibutuhkan</th>
                                             <th style="text-align:center; margin: auto;"><a href="javascript:void(0)" class="badge bg-success addRow">+</a></th>
                                         </tr>
@@ -50,7 +50,7 @@
                                                     @endforeach
                                                 </select>
                                             </td>
-                                            <td><input type="text" name="amount[]" class="form-control form-control-lg" required></td>
+                                            <td><input type="text" name="amount[]" class="form-control form-control-lg" required onkeydown="validateNumber()"></td>
                                             <td align="center"></td>
                                         </tr>
                                     </tbody>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="mt-3">
                             <button type="submit" class="btn btn-primary">Buat</button>
-                            <a href="/product_type" class="btn btn-danger">Kembali</a>
+                            <a href="/type" class="btn btn-danger">Kembali</a>
                         </div>
                     </form>
                 </div>
@@ -81,7 +81,7 @@
                             "@endforeach"+
                         "</select>"+
                     "</td>"+
-                    "<td><input type='text' name='amount[]' class='form-control form-control-lg' required></td>"+
+                    "<td><input type='text' name='amount[]' onkeydown='validateNumber()' class='form-control form-control-lg' required></td>"+
                     "<td align='center'><a href='javascript:void(0)' class='badge bg-danger deleteRow'>-</a></td>"+
                 "</tr>"
         $('tbody').append(tr);

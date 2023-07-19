@@ -14,10 +14,10 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->input('search');
+        $search = $request->search;
 
         if($search != null){
-            $user = User::where('name', 'iLIKE', "%{$search}%")->orWhere('email', 'iLIKE', "%{$search}%")->paginate(10)->withQueryString();
+            $user = User::where('email', 'iLIKE', "%{$search}%")->orWhere('role', 'iLIKE', "%{$search}%")->paginate(10)->withQueryString();
         } else {
             $user = User::paginate(10)->withQueryString();
         }

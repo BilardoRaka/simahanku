@@ -20,15 +20,15 @@
                                             <div class="form-icon form-icon-right">
                                                 <button type="submit" class="badge border-0 bg-white"><em class="icon ni ni-search"></em></button>
                                             </div>
-                                            <input type="text" class="form-control" id="search" name="search" value="{{ request('search') }}" placeholder="Nama/Email Pelanggan">
+                                            <input type="text" class="form-control" id="search" name="search" value="{{ request('search') }}" placeholder="Nama Perusahaan / PIC">
                                         </form>
                                     </div>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <a href="/customer/create" class="btn btn-primary">
                                         <em class="icon ni ni-plus-circle"></em>&nbsp;Tambah Pelanggan
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                     </div>
@@ -43,7 +43,8 @@
                         <thead>
                             <tr>
                                 <th style="text-align: center">No.</th>
-                                <th style="text-align: center">Nama</th>
+                                <th style="text-align: center">Nama Perusahaan</th>
+                                <th style="text-align: center">PIC</th>
                                 <th style="text-align: center">Alamat</th>
                                 <th style="text-align: center">Email</th>
                                 <th style="text-align: center">No. Telepon</th>
@@ -54,13 +55,14 @@
                             @foreach ($customers as $customer)
                                 <tr>
                                     <td align="center" class="nk-tb-col tb-col-mb">{{ $customers->firstItem()+$loop->index }}</td>
-                                    <td class="nk-tb-col tb-col-mb">{{ $customer->name }}</td>
+                                    <td class="nk-tb-col tb-col-mb">{{ $customer->company_name }}</td>
+                                    <td class="nk-tb-col tb-col-mb">{{ $customer->pic }}</td>
                                     <td class="nk-tb-col tb-col-mb">{{ $customer->address }}</td>
-                                    <td class="nk-tb-col tb-col-mb">{{ $customer->email }}</td>
+                                    <td class="nk-tb-col tb-col-mb">{{ $customer->user->email }}</td>
                                     <td class="nk-tb-col tb-col-mb">{{ $customer->phone }}</td>
                                     <td align="center" class="nk-tb-col tb-col-mb">
-                                    <a href="/customer/{{ $customer->id }}/edit" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Pelanggan"><em class="icon ni ni-edit"></em></a>
-                                    <form action="/customer/{{ $customer->id }}" method="post" class="d-inline">
+                                    {{-- <a href="/customer/{{ $customer->id }}/edit" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Pelanggan"><em class="icon ni ni-edit"></em></a> --}}
+                                    <form action="/customer/{{ $customer->user_id }}" method="post" class="d-inline">
                                     @method('delete')
                                     @csrf
                                         <button class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus Pelanggan" onclick="return confirm('Anda yakin untuk hapus?')">

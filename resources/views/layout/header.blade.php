@@ -16,11 +16,17 @@
                         <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
                             <div class="user-toggle">
                                 <div class="user-avatar sm">
-                                    <span>{{ substr(auth()->user()->name,0,2) }}</span>
+                                    <span>
+                                        {{ substr(auth()->user()->employee?->name,0,2) }}
+                                        {{ substr(auth()->user()->customer?->company_name,0,2) }}
+                                    </span>
                                 </div>
                                 <div class="user-info d-none d-md-block">
                                     <div class="user-status">{{ ucfirst(auth()->user()->role) }}</div>
-                                    <div class="user-name dropdown-indicator">{{ auth()->user()->name }}</div>
+                                    <div class="user-name dropdown-indicator">
+                                        {{ auth()->user()->employee?->name }}
+                                        {{ auth()->user()->customer?->company_name }}
+                                    </div>
                                 </div>
                             </div>
                         </a>
@@ -28,19 +34,19 @@
                             <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
                                 <div class="user-card">
                                     <div class="user-avatar">
-                                        <span>Ra</span>
+                                        <span>
+                                            {{ substr(auth()->user()->employee?->name,0,2) }}
+                                            {{ substr(auth()->user()->customer?->company_name,0,2) }}
+                                        </span>
                                     </div>
                                     <div class="user-info">
-                                        <span class="lead-text">{{ auth()->user()->name }}</span>
+                                        <span class="lead-text">
+                                            {{ auth()->user()->employee?->name }}
+                                            {{ auth()->user()->customer?->company_name }}
+                                        </span>
                                         <span class="sub-text">{{ auth()->user()->email }}</span>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="dropdown-inner">
-                                <ul class="link-list">
-                                    <li><a href="#"><em class="icon ni ni-setting-alt"></em><span>Ubah Password</span></a>
-                                    </li>
-                                </ul>
                             </div>
                             <div class="dropdown-inner">
                                 <ul class="link-list">

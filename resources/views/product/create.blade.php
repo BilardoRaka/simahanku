@@ -38,7 +38,7 @@
                             <div class="row">
                                 <div class="col">                    
                                     <div class="form-control-wrap">
-                                        <input type="text" class="form-control form-control-lg form-control-outlined @error('long') is-invalid @enderror" id="long" name="long">
+                                        <input type="text" class="form-control form-control-lg form-control-outlined @error('long') is-invalid @enderror" id="long" onkeydown="validateNumber()" name="long">
                                         <label class="form-label-outlined" for="long">Panjang (cm)</label>
                                         @error('long')
                                         <div class="invalid-feedback">
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="col">                            
                                     <div class="form-control-wrap">
-                                        <input type="text" class="form-control form-control-lg form-control-outlined @error('wide') is-invalid @enderror" id="wide" name="wide">
+                                        <input type="text" class="form-control form-control-lg form-control-outlined @error('wide') is-invalid @enderror" id="wide" onkeydown="validateNumber()" name="wide">
                                         <label class="form-label-outlined" for="wide">Lebar (cm)</label>
                                         @error('wide')
                                         <div class="invalid-feedback">
@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="col">                            
                                     <div class="form-control-wrap">
-                                        <input type="text" class="form-control form-control-lg form-control-outlined @error('height') is-invalid @enderror" id="height" name="height">
+                                        <input type="text" class="form-control form-control-lg form-control-outlined @error('height') is-invalid @enderror" id="height" onkeydown="validateNumber()" name="height">
                                         <label class="form-label-outlined" for="height">Tinggi (cm)</label>
                                         @error('height')
                                         <div class="invalid-feedback">
@@ -82,6 +82,17 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="form-control-wrap">
+                                <input type="text" class="form-control form-control-lg form-control-outlined @error('price') is-invalid @enderror" id="price" name="price" onkeydown="validateNumber()">
+                                <label class="form-label-outlined" for="price">Harga Produk per Buah</label>
+                                @error('price')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="mt-3">
                             <button type="submit" class="btn btn-primary">Buat</button>
                             <a href="/product" class="btn btn-danger">Kembali</a>
@@ -93,3 +104,4 @@
     </div>
 </div>
 @endsection
+

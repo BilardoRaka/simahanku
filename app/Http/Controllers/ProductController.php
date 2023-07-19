@@ -55,7 +55,7 @@ class ProductController extends Controller
         $product = Product::where('product_type_id', $data['product_type_id'])->where('space', $data['space'])->first();
         $recommendation = ProductType::where('id', $data['product_type_id'])->first();
 
-        if($data['product_type_id'] == '1') {
+        if($data['product_type_id'] < '4') {
             $PSheet = (($data['long']+1)+($data['wide']+1)+5) * 2;
             $LSheet = ($data['wide']+1)+($data['height']+1);
             $stringSheet = 'Sheet ukuran '.$PSheet.'x'.$LSheet;

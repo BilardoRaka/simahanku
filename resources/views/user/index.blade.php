@@ -46,6 +46,7 @@
                                 <th style="text-align: center">Nama</th>
                                 <th style="text-align: center">Email</th>
                                 <th style="text-align: center">Hak Akses</th>
+                                <th style="text-align: center">Nomor Telepon</th>
                                 <th style="text-align: center">Aksi</th>
                             </tr>
                         </thead>
@@ -53,11 +54,18 @@
                             @foreach ($users as $user)
                                 <tr>
                                     <td align="center" class="nk-tb-col tb-col-mb">{{ $users->firstItem()+$loop->index }}</td>
-                                    <td class="nk-tb-col tb-col-mb">{{ $user->name }}</td>
+                                    <td class="nk-tb-col tb-col-mb">
+                                        {{ $user->employee?->name }} {{ $user->customer?->company_name }}
+                                    </td>
                                     <td class="nk-tb-col tb-col-mb">{{ $user->email }}</td>
                                     <td class="nk-tb-col tb-col-mb">{{ ucfirst($user->role) }}</td>
+                                    <td align="right" class="nk-tb-col tb-col-mb">
+                                        {{ $user->employee?->phone }}
+                                        {{ $user->customer?->phone }}
+                                    </td>
                                     <td align="center" class="nk-tb-col tb-col-mb">
-                                    <a href="/user/{{ $user->id }}/edit" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah User"><em class="icon ni ni-edit"></em></a>
+                                    {{-- <a href="/user/{{ $user->id }}/edit" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah User"><em class="icon ni ni-edit"></em></a> --}}
+                                    @if(auth()->user()->role == 'admin')
                                     <form action="/user/{{ $user->id }}" method="post" class="d-inline">
                                     @method('delete')
                                     @csrf
@@ -65,6 +73,7 @@
                                             <em class="icon ni ni-trash"></em>
                                         </button>
                                     </form>
+                                    @endif
                                     </td>
                                 </tr>
                             @endforeach

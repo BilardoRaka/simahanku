@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <form method="post" action="/product_type/{{ $product_type->id }}">
+                    <form method="post" action="/type/{{ $product_type->id }}">
                     @csrf
                     @method('PUT')
                         <div class="form-group">
@@ -50,7 +50,7 @@
                                                     @endforeach
                                                 </select>
                                             </td>
-                                            <td><input type="text" name="amount[]" class="form-control form-control-lg" value="{{ $material->pivot->amount }}" required></td>
+                                            <td><input type="text" name="amount[]" class="form-control form-control-lg" onkeydown="validateNumber()" value="{{ $material->pivot->amount }}" required></td>
                                             <td align="center">
                                                 @if (!$loop->first)
                                                     <a href='javascript:void(0)' class='badge bg-danger deleteRow'>-</a>
@@ -64,7 +64,7 @@
                         </div>
                         <div class="mt-3">
                             <button type="submit" class="btn btn-primary">Ubah</button>
-                            <a href="/product_type" class="btn btn-danger">Kembali</a>
+                            <a href="/type" class="btn btn-danger">Kembali</a>
                         </div>
                     </form>
                 </div>
@@ -86,7 +86,7 @@
                             "@endforeach"+
                         "</select>"+
                     "</td>"+
-                    "<td><input type='text' name='amount[]' class='form-control form-control-lg' required></td>"+
+                    "<td><input type='text' name='amount[]' onkeydown='validateNumber()' class='form-control form-control-lg' required></td>"+
                     "<td align='center'><a href='javascript:void(0)' class='badge bg-danger deleteRow'>-</a></td>"+
                 "</tr>"
         $('tbody').append(tr);

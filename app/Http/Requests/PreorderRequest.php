@@ -25,7 +25,7 @@ class PreorderRequest extends FormRequest
             'customer_id' => 'required',
             'product_id' => 'required',
             'amount' => 'required|numeric',
-            'price' => 'required|numeric'
+            'total_price' => 'required|numeric'
         ];
     }
 }

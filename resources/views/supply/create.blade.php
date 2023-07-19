@@ -52,7 +52,7 @@
                         </div>
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control form-control-lg form-control-outlined @error('amount') is-invalid @enderror" id="amount" name="amount">
+                                <input type="text" class="form-control form-control-lg form-control-outlined @error('amount') is-invalid @enderror" id="amount" name="amount" onkeydown="validateNumber()">
                                 <label class="form-label-outlined" for="amount">Jumlah Bahan</label>
                                 @error('amount')
                                     <div class="invalid-feedback">
@@ -63,7 +63,7 @@
                         </div>
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control form-control-lg form-control-outlined @error('price') is-invalid @enderror" id="price" name="price">
+                                <input type="text" class="form-control form-control-lg form-control-outlined @error('price') is-invalid @enderror" id="price" name="price" onkeydown="validateNumber()">
                                 <label class="form-label-outlined" for="price">Harga Beli</label>
                                 @error('price')
                                     <div class="invalid-feedback">

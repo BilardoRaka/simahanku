@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class CustomerRequest extends FormRequest
 {
@@ -22,10 +23,17 @@ class CustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:30',
-            'address' => 'required',
             'email' => 'required|email|string|max:50',
-            'phone' => 'required|max:20'
+            'password' => [
+                'required',
+                'max:15',
+                Password::min(6)->mixedCase()->numbers()->symbols()
+            ],
+            'company_name' => 'required|max:30',
+            'pic' => 'required|max:30',
+            'address' => 'required',
+            'phone' => 'required|max:20',
+            'logo' => 'image|file|max:1024',
         ];
     }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MaterialRequest;
 use App\Models\Material;
+use App\Models\Preorder;
+use App\Models\Supply;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -16,7 +18,8 @@ class MaterialController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->input('search');
+        $date = $request->date; // tanggal yang dimasukkan oleh admin
+        $search = $request->search;
 
         if($search != null){
             $material = Material::where('name', 'iLIKE', "%{$search}%")->paginate(10)->withQueryString(); 
@@ -24,8 +27,20 @@ class MaterialController extends Controller
             $material = Material::paginate(10)->withQueryString();
         }
 
+        if($date != null){
+            $supply = Supply::whereDate('created_at','>',$date)->get();
+            $preorder = Preorder::where('status','confirmed')->whereDate('created_at','>',$date)->get();
+        } else {
+            $supply = Supply::whereDate('created_at','>',now())->get();
+            $preorder = Preorder::where('status','confirmed')->whereDate('created_at','>',now())->get();
+        }
+
+        // dd($preorder);
+            
         return view('material.index',[
-            'materials' => $material
+            'materials' => $material,
+            'supplies' => $supply,
+            'preorders' => $preorder
         ]);
     }
 

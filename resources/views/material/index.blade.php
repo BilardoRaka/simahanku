@@ -15,6 +15,22 @@
                         <div class="nk-block-head-content">
                             <ul class="nk-block-tools g-3">
                                 <li>
+                                    <form action="{{ route('material.index') }}">
+                                    {{-- @csrf --}}
+                                        <div class="form-group">
+                                            <div class="form-control-wrap">
+                                                <div class="form-icon form-icon-right">
+                                                    <em class="icon ni ni-calendar-alt"></em>
+                                                </div>
+                                                <input type="text" autocomplete="off" name="date" data-date-format="yyyy-mm-dd" class="form-control date-picker" value="{{ request('date') }}">
+                                            </div>
+                                        </div>
+                                    </li>
+                                <li>
+                                    <button type="submit" class="btn btn-dim btn-outline-primary"><em class="icon ni ni-search"></em></button>
+                                </form>
+                                </li>
+                                <li>
                                     <div class="form-control-wrap">
                                         <form action="/material">
                                             <div class="form-icon form-icon-right">
@@ -58,7 +74,38 @@
                                 <tr>
                                     <td align="center" class="nk-tb-col tb-col-mb">{{ $materials->firstItem()+$loop->index }}</td>
                                     <td class="nk-tb-col tb-col-mb">{{ $material->name }}</td>
-                                    <td align="right" class="nk-tb-col tb-col-mb">{{ $material->stock }} {{ $material->unit }}</td>
+                                    <td align="right" class="nk-tb-col tb-col-mb">
+                                        @php
+                                            $supplyQty = 0;  
+                                            $preorderQty = 0; 
+                                        @endphp
+                                        @foreach($supplies as $supply)
+                                            @if($supply->material_id == $material->id)
+                                                @php
+                                                $supplyQty += $supply->amount;
+                                                @endphp
+                                            @endif
+                                        @endforeach
+                                        @foreach($preorders as $preorder)
+                                            @foreach($preorder->product->material as $mat)
+                                                @if($mat->pivot->material_id == $material->id)
+                                                    @php
+                                                    $preorderQty += $mat->pivot->amount;
+                                                    @endphp
+                                                @endif
+                                            @endforeach
+                                            @php
+                                            $preorderQty *= $preorder->amount;
+                                            @endphp
+                                        @endforeach
+                                        @php
+                                            $material_result = $material->stock - $supplyQty + $preorderQty;
+                                        @endphp
+                                        <p @if($material_result < 0) class="text-danger" @endif>
+                                            {{ $material_result }}
+                                            {{ $material->unit }}
+                                        </p>
+                                    </td>
                                     <td align="center" class="nk-tb-col tb-col-mb">
                                     <a href="/material/{{ $material->id }}/edit" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Bahan Baku"><em class="icon ni ni-edit"></em></a>
                                     <form action="/material/{{ $material->id }}" method="post" class="d-inline">

@@ -43,10 +43,11 @@
                         <thead>
                             <tr>
                                 <th style="text-align: center">No.</th>
-                                <th style="text-align: center">Jenis Produk</th>
+                                <th style="text-align: center">Jenis Bahan Baku</th>
                                 <th style="text-align: center">Volume</th>
                                 <th style="text-align: center">Deskripsi</th>
-                                <th style="text-align: center">Bahan Baku Dibutuhkan Per Produk</th>
+                                <th style="text-align: center">Komposisi Bahan Baku Dibutuhkan</th>
+                                <th style="text-align: center">Harga</th>
                                 <th style="text-align: center">Aksi</th>
                             </tr>
                         </thead>
@@ -55,7 +56,7 @@
                                 <tr>
                                     <td align="center" class="nk-tb-col tb-col-mb">{{ $products->firstItem()+$loop->index }}</td>
                                     <td class="nk-tb-col tb-col-mb">{{ $product->productType->product_type }}</td>
-                                    <td class="nk-tb-col tb-col-mb">{{ number_format($product->space,0,',','.') }} cm<sup>3</sup></td>
+                                    <td  align="right" class="nk-tb-col tb-col-mb">{{ number_format($product->space,0,',','.') }} cm<sup>3</sup></td>
                                     <td class="nk-tb-col tb-col-mb">{{ $product->description }}</td>
                                     <td class="nk-tb-col tb-col-mb">
                                         <ul>
@@ -65,6 +66,9 @@
                                                 </li>
                                             @endforeach
                                         </ul>
+                                    </td>
+                                    <td align="right" class="nk-tb-col tb-col-mb">
+                                        Rp. {{ number_format($product->price,0,",",".") }}
                                     </td>
                                     <td align="center" class="nk-tb-col tb-col-mb">
                                     <a href="/product/{{ $product->id }}/edit" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Produk"><em class="icon ni ni-edit"></em></a>
