@@ -24,11 +24,11 @@
                                         </form>
                                     </div>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <a href="/user/create" class="btn btn-primary">
                                         <em class="icon ni ni-plus-circle"></em>&nbsp;Tambah User
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                     </div>
@@ -47,7 +47,6 @@
                                 <th style="text-align: center">Email</th>
                                 <th style="text-align: center">Hak Akses</th>
                                 <th style="text-align: center">Nomor Telepon</th>
-                                <th style="text-align: center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -63,8 +62,8 @@
                                         {{ $user->employee?->phone }}
                                         {{ $user->customer?->phone }}
                                     </td>
-                                    <td align="center" class="nk-tb-col tb-col-mb">
-                                    {{-- <a href="/user/{{ $user->id }}/edit" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah User"><em class="icon ni ni-edit"></em></a> --}}
+                                    {{-- <td align="center" class="nk-tb-col tb-col-mb">
+                                    <a href="/user/{{ $user->id }}/edit" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah User"><em class="icon ni ni-edit"></em></a>
                                     @if(auth()->user()->role == 'admin')
                                     <form action="/user/{{ $user->id }}" method="post" class="d-inline">
                                     @method('delete')
@@ -74,7 +73,7 @@
                                         </button>
                                     </form>
                                     @endif
-                                    </td>
+                                    </td> --}}
                                 </tr>
                             @endforeach
                             <tr>

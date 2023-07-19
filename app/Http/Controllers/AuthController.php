@@ -47,22 +47,21 @@ class AuthController extends Controller
             'password' => $data['password'],
             'role' => 'customer'
         ]);
-
-        Customer::create([
-            'user_id' => $user->id,
-            'company_name' => $data['company_name'],
-            'pic' => $data['pic'],
-            'phone' => $data['phone'],
-            'address' => $data['address'],
-        ]);
-
+        
         if($request->file('logo')){
             $extension  = request()->file('logo')->getClientOriginalExtension();
             $image_name = time() .'.' . $extension;
-            $data['logo'] = $request->file('logo')->storeAs('logo', $image_name);
+            $customer['image'] = $request->file('logo')->storePubliclyAs('image', $image_name, 'public');
         }
 
-        dd($data['logo']);
+        $customer['user_id'] = $user->id;
+        $customer['company_name'] = $data['company_name'];
+        $customer['pic'] = $data['pic'];
+        $customer['phone'] = $data['phone'];
+        $customer['address'] = $data['address'];
+
+        Customer::create($customer);
+
 
         return redirect('/signin')->with('success', 'Anda telah berhasil registrasi, silahkan login.');
 

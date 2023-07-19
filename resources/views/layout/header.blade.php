@@ -16,10 +16,20 @@
                         <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
                             <div class="user-toggle">
                                 <div class="user-avatar sm">
+                                    @if(auth()->user()->employee?->image != null)
+                                    <img src="{{ asset('/storage/'.auth()->user()->employee?->image) }}" alt="...">
+                                    @else
                                     <span>
                                         {{ substr(auth()->user()->employee?->name,0,2) }}
+                                    </span>
+                                    @endif
+                                    @if(auth()->user()->customer?->image != null)
+                                    <img src="{{ asset('/storage/'.auth()->user()->customer?->image) }}" alt="...">
+                                    @else
+                                    <span>
                                         {{ substr(auth()->user()->customer?->company_name,0,2) }}
                                     </span>
+                                    @endif
                                 </div>
                                 <div class="user-info d-none d-md-block">
                                     <div class="user-status">{{ ucfirst(auth()->user()->role) }}</div>
@@ -34,10 +44,20 @@
                             <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
                                 <div class="user-card">
                                     <div class="user-avatar">
+                                        @if(auth()->user()->employee?->image != null)
+                                        <img src="{{ asset('/storage/'.auth()->user()->employee?->image) }}" alt="...">
+                                        @else
                                         <span>
                                             {{ substr(auth()->user()->employee?->name,0,2) }}
+                                        </span>
+                                        @endif
+                                        @if(auth()->user()->customer?->image != null)
+                                        <img src="{{ asset('/storage/'.auth()->user()->customer?->image) }}" alt="...">
+                                        @else
+                                        <span>
                                             {{ substr(auth()->user()->customer?->company_name,0,2) }}
                                         </span>
+                                        @endif
                                     </div>
                                     <div class="user-info">
                                         <span class="lead-text">

@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', 'Data Pelanggan')
+@section('title', 'Data Karyawan')
 
 @section('content')
 <div class="nk-content ">
@@ -10,25 +10,25 @@
                 <div class="nk-block-head nk-block-head-sm">
                     <div class="nk-block-between">
                         <div class="nk-block-head-content">
-                            <h3 class="nk-block-title page-title">List Data Pelanggan</h3>
+                            <h3 class="nk-block-title page-title">List Data Karyawan</h3>
                         </div>
                         <div class="nk-block-head-content">
                             <ul class="nk-block-tools g-3">
                                 <li>
                                     <div class="form-control-wrap">
-                                        <form action="/customer">
+                                        <form action="/employee">
                                             <div class="form-icon form-icon-right">
                                                 <button type="submit" class="badge border-0 bg-white"><em class="icon ni ni-search"></em></button>
                                             </div>
-                                            <input type="text" class="form-control" id="search" name="search" value="{{ request('search') }}" placeholder="Nama Perusahaan / PIC">
+                                            <input type="text" class="form-control" id="search" name="search" value="{{ request('search') }}" placeholder="Nama / Alamat">
                                         </form>
                                     </div>
                                 </li>
-                                {{-- <li>
-                                    <a href="/customer/create" class="btn btn-primary">
-                                        <em class="icon ni ni-plus-circle"></em>&nbsp;Tambah Pelanggan
+                                <li>
+                                    <a href="/employee/create" class="btn btn-primary">
+                                        <em class="icon ni ni-plus-circle"></em>&nbsp;Tambah Karyawan
                                     </a>
-                                </li> --}}
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -43,44 +43,44 @@
                         <thead>
                             <tr>
                                 <th style="text-align: center">No.</th>
-                                <th style="text-align: center">Nama Perusahaan</th>
-                                <th style="text-align: center">PIC</th>
+                                <th style="text-align: center">Nama Karyawan</th>
+                                <th style="text-align: center">Jabatan</th>
+                                <th style="text-align: center">Hak Akses</th>
                                 <th style="text-align: center">Alamat</th>
-                                <th style="text-align: center">Email</th>
                                 <th style="text-align: center">No. Telepon</th>
                                 <th style="text-align: center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($customers as $customer)
+                            @foreach ($employees as $employee)
                                 <tr>
-                                    <td align="center" class="nk-tb-col tb-col-mb">{{ $customers->firstItem()+$loop->index }}</td>
+                                    <td align="center" class="nk-tb-col tb-col-mb">{{ $employees->firstItem()+$loop->index }}</td>
                                     <td class="nk-tb-col tb-col-mb">
                                         <div class="user-card">
                                             <div class="user-avatar">
-                                            @if($customer->image != null)
-                                            <img src="{{ asset('/storage/'.$customer->image) }}" alt="...">
+                                            @if($employee->image != null)
+                                            <img src="{{ asset('/storage/'.$employee->image) }}" alt="...">
                                             @else   
                                             <em class="icon ni ni-user-alt"></em>
                                             @endif
                                             </div>
                                             <div class="user-name">
                                                 <span class="tb-lead">
-                                                    {{ $customer->company_name }}
+                                                    {{ $employee->name }}
                                                 </span>
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="nk-tb-col tb-col-mb">{{ $customer->pic }}</td>
-                                    <td class="nk-tb-col tb-col-mb">{{ $customer->address }}</td>
-                                    <td class="nk-tb-col tb-col-mb">{{ $customer->user->email }}</td>
-                                    <td class="nk-tb-col tb-col-mb">{{ $customer->phone }}</td>
+                                    <td class="nk-tb-col tb-col-mb">{{ $employee->job_position }}</td>
+                                    <td class="nk-tb-col tb-col-mb">{{ $employee->user->role }}</td>
+                                    <td class="nk-tb-col tb-col-mb">{{ $employee->address }}</td>
+                                    <td class="nk-tb-col tb-col-mb">{{ $employee->phone }}</td>
                                     <td align="center" class="nk-tb-col tb-col-mb">
-                                    {{-- <a href="/customer/{{ $customer->id }}/edit" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Pelanggan"><em class="icon ni ni-edit"></em></a> --}}
-                                    <form action="/customer/{{ $customer->user_id }}" method="post" class="d-inline">
+                                    <a href="/employee/{{ $employee->id }}/edit" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Karyawan"><em class="icon ni ni-edit"></em></a>
+                                    <form action="/employee/{{ $employee->user_id }}" method="post" class="d-inline">
                                     @method('delete')
                                     @csrf
-                                        <button class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus Pelanggan" onclick="return confirm('Anda yakin untuk hapus?')">
+                                        <button class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus Karyawan" onclick="return confirm('Anda yakin untuk hapus?')">
                                             <em class="icon ni ni-trash"></em>
                                         </button>
                                     </form>
@@ -92,7 +92,7 @@
                         </tbody>
                     </table>
                 </div>
-                {{ $customers->links() }}
+                {{ $employees->links() }}
             </div>
         </div>
     </div>

@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
-class CustomerRequest extends FormRequest
+class EmployeeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -19,27 +19,28 @@ class CustomerRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
     public function rules(): array
     {
-        return [
-            'email' => [
-                'required', 
-                'max:50', 
-                'email', 
-                Rule::unique('users')
-            ],
+        $rules = [
             'password' => [
-                'required',
                 'max:15',
                 Password::min(6)->mixedCase()->numbers()->symbols()
             ],
-            'company_name' => 'required|max:30',
-            'pic' => 'required|max:30',
-            'address' => 'required',
-            'phone' => 'required|max:20',
+            'name' => 'max:30',
+            'job_position' => 'max:30',
+            'address' => 'string',
+            'phone' => 'max:20',
             'logo' => 'image|file|max:1024',
+            'role' => 'string'
         ];
+        if($this->isMethod('POST')){
+            $rules['email'] = ['max:50', 'email', Rule::unique('users')];
+        } elseif ($this->isMethod('PUT')) {
+            $rules['email'] = ['max:50', 'email', Rule::unique('users')->ignore($this->oldEmail, 'email')];
+        }
+
+        return $rules;
     }
 }

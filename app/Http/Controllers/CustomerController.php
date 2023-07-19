@@ -6,6 +6,8 @@ use App\Http\Requests\CustomerRequest;
 use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class CustomerController extends Controller
 {
@@ -84,7 +86,13 @@ class CustomerController extends Controller
      */
     public function destroy(string $id)
     {
+        $customer = Customer::where('user_id', $id)->first();
+        // dd($customer->image);
         User::destroy($id);
+        if($customer->image != null){
+            $file_path = storage_path('/app/public/'.$customer->image);
+            unlink($file_path); 
+        }
 
         return back()->with('peringatan', 'Berhasil menghapus data pelanggan.');
     }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\PreorderController;
 use App\Http\Controllers\ProductController;
@@ -34,7 +35,8 @@ Route::post('/registration', [AuthController::class, 'storeRegistration'])->midd
 Route::post('/logout', [AuthController::class, 'logout']);
 
 // Resource Route
-Route::resource('/user', UserController::class)->except('show')->middleware('auth');
+Route::resource('/user', UserController::class)->except('show','edit','update')->middleware('auth');
+Route::resource('/employee', EmployeeController::class)->except('show')->middleware('auth');
 Route::resource('/customer', CustomerController::class)->except('show')->middleware('auth');
 Route::resource('/supplier', SupplierController::class)->except('show')->middleware('auth');
 Route::resource('/material', MaterialController::class)->except('show')->middleware('auth');

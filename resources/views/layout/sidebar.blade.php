@@ -24,6 +24,12 @@
                         </a>
                     </li>
                     <li class="nk-menu-item">
+                        <a href="/employee" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-user-list"></em></span>
+                            <span class="nk-menu-text">Karyawan</span>
+                        </a>
+                    </li>
+                    <li class="nk-menu-item">
                         <a href="/customer" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-user-list-fill"></em></span>
                             <span class="nk-menu-text">Pelanggan</span>
