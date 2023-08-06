@@ -31,9 +31,9 @@
                         </div>
                         <div class="card card-bordered">
                             <div class="card-inner card-inner-lg">
-                                @if(session()->has('peringatan'))
+                                @if(session()->has('failed'))
                                     <div class="alert alert-danger alert-icon">
-                                        <em class="icon ni ni-cross-circle"></em> {{ session('peringatan') }}
+                                        <em class="icon ni ni-cross-circle"></em> {{ session('failed') }}
                                     </div>
                                 @endif
                                 @if(session()->has('success'))
